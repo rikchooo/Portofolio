@@ -69,7 +69,7 @@ export default function Hero() {
             </div>
 
             {/* Profile Photo */}
-            <div className="relative inline-block rounded-full bg-linear-to-tr from-white to-white p-1 sm:p-1.5 shadow-lg w-44 h-44 sm:w-48 sm:h-48 md:w-52 md:h-52">
+            <div className="relative inline-block rounded-full bg-linear-to-tr from-gray-100 to-gray-100 p-1 sm:p-1.5 shadow-lg w-44 h-44 sm:w-48 sm:h-48 md:w-52 md:h-52">
               <Image
                 src="/Profil.jpeg"
                 alt="Riko Hermawan"
