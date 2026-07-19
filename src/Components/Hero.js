@@ -76,6 +76,7 @@ export default function Hero() {
                 fill
                 className="rounded-full object-contain"
                 priority
+                sizes="(max-width: 640px) 176px, (max-width: 768px) 192px, 208px"
               />
             </div>
           </div>
