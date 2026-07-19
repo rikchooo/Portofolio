@@ -45,7 +45,7 @@ export default function Experience() {
           {experiences.map((exp, idx) => (
             <div key={idx} className="relative pl-6 sm:pl-8 md:pl-10 group">
               {/* Timeline dot - Larger on mobile */}
-              <div className="absolute -left-[8px] top-1.5 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white dark:bg-zinc-950 border-2 border-zinc-300 dark:border-zinc-700 group-hover:border-violet-600 dark:group-hover:border-violet-400 group-hover:scale-110 transition-all duration-300"></div>
+              <div className="absolute -left-2 top-1.5 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white dark:bg-zinc-950 border-2 border-zinc-300 dark:border-zinc-700 group-hover:border-violet-600 dark:group-hover:border-violet-400 group-hover:scale-110 transition-all duration-300"></div>
 
               {/* Card wrapper */}
               <div className="bg-white dark:bg-zinc-950 p-4 sm:p-5 md:p-6 lg:p-8 rounded-2xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-sm hover:shadow-md hover:border-zinc-300 dark:hover:border-zinc-800 transition-all">

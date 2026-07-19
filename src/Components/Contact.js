@@ -35,9 +35,12 @@ export default function Contact() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error for that field when user types
     if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: null }));
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[name];
+        return next;
+      });
     }
   };
 
@@ -47,18 +50,9 @@ export default function Contact() {
 
     setStatus({ submitting: true, success: false, error: null });
 
-    // Mock API submission delay
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setStatus({ submitting: false, success: true, error: null });
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch (err) {
-      setStatus({
-        submitting: false,
-        success: false,
-        error: "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.",
-      });
-    }
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setStatus({ submitting: false, success: true, error: null });
+    setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
   const contactInfo = [
@@ -97,7 +91,7 @@ export default function Contact() {
     },
     {
       name: "LinkedIn",
-      href: "https://linkedin.com/rikohrmwn29",
+      href: "https://www.linkedin.com/in/rikohrmwn29",
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
           <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
@@ -139,7 +133,7 @@ export default function Contact() {
               <div className="flex flex-col gap-4 sm:gap-5 mb-8 sm:mb-10">
                 {contactInfo.map((info, idx) => (
                   <div key={idx} className="flex gap-3 sm:gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/40 dark:border-zinc-800/40 flex items-center justify-center">
+                    <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/40 dark:border-zinc-800/40 flex items-center justify-center">
                       {info.icon}
                     </div>
                     <div>
@@ -149,7 +143,7 @@ export default function Contact() {
                       {info.href ? (
                         <a
                           href={info.href}
-                          className="text-sm sm:text-base font-bold text-zinc-800 dark:text-zinc-200 hover:text-violet-600 dark:hover:text-violet-400 transition-colors break-words"
+                          className="text-sm sm:text-base font-bold text-zinc-800 dark:text-zinc-200 hover:text-violet-600 dark:hover:text-violet-400 transition-colors wrap-break-word"
                         >
                           {info.value}
                         </a>
@@ -211,7 +205,7 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:gap-4 md:gap-5 sm:gap-6">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:gap-4 md:gap-5">
                 {status.error && (
                   <div className="p-3 sm:p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-100 dark:border-rose-900 text-[10px] sm:text-xs font-semibold text-rose-600 dark:text-rose-400">
                     {status.error}
@@ -224,13 +218,14 @@ export default function Contact() {
                     <label htmlFor="name" className="text-[10px] sm:text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
                       Nama Lengkap
                     </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Masukkan nama Anda"
+                     <input
+                       type="text"
+                       id="name"
+                       name="name"
+                       value={formData.name}
+                       onChange={handleChange}
+                       placeholder="Masukkan nama Anda"
+                       autoComplete="name"
                       className={`px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border bg-white dark:bg-zinc-950 text-xs sm:text-sm text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-violet-500/25 transition-all ${errors.name
                         ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500/25"
                         : "border-zinc-200 dark:border-zinc-800 focus:border-violet-600 dark:focus:border-violet-500"
@@ -244,13 +239,14 @@ export default function Contact() {
                     <label htmlFor="email" className="text-[10px] sm:text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
                       Alamat Email
                     </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Masukkan Email Anda"
+                     <input
+                       type="email"
+                       id="email"
+                       name="email"
+                       value={formData.email}
+                       onChange={handleChange}
+                       placeholder="Masukkan Email Anda"
+                       autoComplete="email"
                       className={`px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border bg-white dark:bg-zinc-950 text-xs sm:text-sm text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-violet-500/25 transition-all ${errors.email
                         ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500/25"
                         : "border-zinc-200 dark:border-zinc-800 focus:border-violet-600 dark:focus:border-violet-500"
@@ -265,13 +261,14 @@ export default function Contact() {
                   <label htmlFor="subject" className="text-[10px] sm:text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
                     Subjek
                   </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="Apa topik pembicaraan Anda?"
+                   <input
+                     type="text"
+                     id="subject"
+                     name="subject"
+                     value={formData.subject}
+                     onChange={handleChange}
+                     placeholder="Apa topik pembicaraan Anda?"
+                     autoComplete="off"
                     className={`px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border bg-white dark:bg-zinc-950 text-xs sm:text-sm text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-violet-500/25 transition-all ${errors.subject
                       ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500/25"
                       : "border-zinc-200 dark:border-zinc-800 focus:border-violet-600 dark:focus:border-violet-500"
@@ -285,13 +282,14 @@ export default function Contact() {
                   <label htmlFor="message" className="text-[10px] sm:text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
                     Pesan Anda
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tulis pesan lengkap Anda di sini..."
+                   <textarea
+                     id="message"
+                     name="message"
+                     rows={4}
+                     value={formData.message}
+                     onChange={handleChange}
+                     placeholder="Tulis pesan lengkap Anda di sini..."
+                     autoComplete="off"
                     className={`px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border bg-white dark:bg-zinc-950 text-xs sm:text-sm text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-violet-500/25 transition-all resize-none ${errors.message
                         ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500/25"
                         : "border-zinc-200 dark:border-zinc-800 focus:border-violet-600 dark:focus:border-violet-500"
@@ -304,7 +302,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status.submitting}
-                  className="mt-1 sm:mt-2 w-full py-3 px-4 sm:py-4 sm:px-6 rounded-xl font-semibold text-white bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 shadow-md shadow-violet-500/10 hover:shadow-xl hover:shadow-violet-500/20 transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:shadow-none transition-all flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 text-xs sm:text-sm"
+                  className="mt-1 sm:mt-2 w-full py-3 px-4 sm:py-4 sm:px-6 rounded-xl font-semibold text-white bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 shadow-md shadow-violet-500/10 hover:shadow-xl hover:shadow-violet-500/20 transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:shadow-none transition-all flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 text-xs sm:text-sm"
                 >
                   {status.submitting ? (
                     <>

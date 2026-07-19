@@ -15,7 +15,7 @@ export default function Footer() {
         {/* Logo/Name */}
         <div className="flex flex-col items-center md:items-start">
           <a href="#home" className="text-base sm:text-lg font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-1 group">
-            <span className="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">RH</span>
+            <span className="bg-linear-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">RH</span>
           </a>
           <p className="text-[10px] sm:text-xs text-zinc-500 dark:text-zinc-500 mt-1">
             Membangun masa depan digital dengan rapi.

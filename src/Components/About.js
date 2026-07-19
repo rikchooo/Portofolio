@@ -55,10 +55,10 @@ export default function About() {
             </div>
 
             {/* Stats Grid - Stack vertically on smallest screens */}
-            <div className="grid grid-cols-1 xs:grid-cols-3 sm:grid-cols-3 gap-4 sm:gap-6 pt-4 sm:pt-6 border-t border-zinc-200 dark:border-zinc-800">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-4 sm:pt-6 border-t border-zinc-200 dark:border-zinc-800">
               {stats.map((stat, idx) => (
                 <div key={idx} className="flex flex-col">
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold bg-gradient-to-tr from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent">
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold bg-linear-to-tr from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent">
                     {stat.value}
                   </span>
                   <span className="text-[10px] sm:text-xs font-medium text-zinc-500 dark:text-zinc-400 mt-1">

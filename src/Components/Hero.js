@@ -1,3 +1,5 @@
+﻿import Image from "next/image";
+
 export default function Hero() {
   return (
 <section
@@ -17,15 +19,10 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center relative z-10 w-full">
         {/* Text Area */}
         <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-violet-50 dark:bg-violet-950/40 border border-violet-100 dark:border-violet-900/50 mb-4 sm:mb-6 animate-fade-in">
-            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-violet-600 dark:bg-violet-400 animate-ping"></span>
-            <span className="text-[10px] sm:text-xs font-semibold text-violet-700 dark:text-violet-300">Tersedia untuk Proyek Baru</span>
-          </div>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.1] mb-4 sm:mb-6">
             Halo, saya{" "}
-            <span className="bg-gradient-to-r from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent">
               Riko Hermawan
             </span>
           </h1>
@@ -41,7 +38,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0">
             <a
               href="#projects"
-              className="px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-white font-medium bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 shadow-md shadow-violet-500/10 hover:shadow-xl hover:shadow-violet-500/20 transform hover:-translate-y-0.5 transition-all text-center text-sm sm:text-base"
+              className="px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-white font-medium bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 shadow-md shadow-violet-500/10 hover:shadow-xl hover:shadow-violet-500/20 transform hover:-translate-y-0.5 transition-all text-center text-sm sm:text-base"
             >
               Lihat Proyek
             </a>
@@ -56,54 +53,30 @@ export default function Hero() {
 
         {/* Visual/Graphics Area - Hidden on smallest screens for better mobile UX */}
         <div className="lg:col-span-5 flex items-center justify-center mt-8 lg:mt-0">
-          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 flex items-center justify-center">
             {/* Rotating SVG frames for premium aesthetic */}
             <div className="absolute inset-0 animate-spin" style={{ animationDuration: "25s" }}>
-              <svg className="w-full h-full text-zinc-100 dark:text-zinc-900 opacity-60 dark:opacity-30" viewBox="0 0 100 100">
+              <svg className="w-full h-full text-zinc-100 dark:text-zinc-900 opacity-60 dark:opacity-30" viewBox="0 0 100 100" aria-hidden="true">
                 <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="1" fill="none" strokeDasharray="5 5" />
                 <circle cx="50" cy="50" r="35" stroke="currentColor" strokeWidth="1" fill="none" strokeDasharray="10 10" />
               </svg>
             </div>
 
             <div className="absolute inset-0 animate-spin" style={{ animationDuration: "40s", animationDirection: "reverse" }}>
-              <svg className="w-full h-full text-violet-500/20 dark:text-violet-400/10" viewBox="0 0 100 100">
+              <svg className="w-full h-full text-violet-500/20 dark:text-violet-400/10" viewBox="0 0 100 100" aria-hidden="true">
                 <rect x="15" y="15" width="70" height="70" rx="15" stroke="currentColor" strokeWidth="1.5" fill="none" />
               </svg>
             </div>
 
-            {/* Core glowing card containing avatar/initials */}
-            <div className="absolute inset-6 sm:inset-8 rounded-3xl bg-gradient-to-tr from-violet-600/10 to-indigo-600/10 dark:from-violet-500/5 dark:to-indigo-500/5 border border-zinc-200/50 dark:border-zinc-800/50 backdrop-blur-xl flex flex-col items-center justify-center p-4 sm:p-6 shadow-2xl">
-              {/* Profile Photo Mockup */}
-              <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-2xl bg-gradient-to-tr from-violet-600 to-indigo-600 p-[2px] sm:p-[3px] shadow-lg mb-4 sm:mb-6">
-                <div className="w-full h-full rounded-2xl bg-white dark:bg-zinc-950 flex items-center justify-center">
-                  <span className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-tr from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-                    RH
-                  </span>
-                </div>
-              </div>
-
-              {/* Small interactive specs inside graphic - Hidden on mobile, shown on larger screens */}
-              <div className="hidden sm:block text-center">
-                <p className="text-sm sm:text-base font-bold text-zinc-800 dark:text-zinc-200">Based in Indonesia</p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">Ready for global remote work</p>
-              </div>
-
-              {/* Float-in cards inside graphics area - Only shown on larger screens */}
-              <div className="hidden sm:block absolute -top-3 -right-3 sm:-top-4 sm:-right-4 bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl shadow-lg flex items-center gap-2 transform hover:scale-105 transition-transform">
-                <span className="text-lg sm:text-xl">🚀</span>
-                <div className="text-left">
-                  <p className="text-[9px] sm:text-[10px] text-zinc-400 dark:text-zinc-500 font-semibold uppercase tracking-wider">Keahlian Utama</p>
-                  <p className="text-xs font-bold text-zinc-800 dark:text-zinc-200">Next.js & React</p>
-                </div>
-              </div>
-
-              <div className="hidden sm:block absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl shadow-lg flex items-center gap-2 transform hover:scale-105 transition-transform">
-                <span className="text-lg sm:text-xl">💻</span>
-                <div className="text-left">
-                  <p className="text-[9px] sm:text-[10px] text-zinc-400 dark:text-zinc-500 font-semibold uppercase tracking-wider">Desain</p>
-                  <p className="text-xs font-bold text-zinc-800 dark:text-zinc-200">Tailwind & Figma</p>
-                </div>
-              </div>
+            {/* Profile Photo */}
+            <div className="relative inline-block rounded-full bg-linear-to-tr from-white to-white p-1 sm:p-1.5 shadow-lg w-44 h-44 sm:w-48 sm:h-48 md:w-52 md:h-52">
+              <Image
+                src="/Profil.jpeg"
+                alt="Riko Hermawan"
+                fill
+                className="rounded-full object-contain"
+                priority
+              />
             </div>
           </div>
         </div>
