@@ -1,21 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #09090b; /* zinc-950 */
+  --background: #17191F;
+  --foreground: #E8E8E8;
+  --card-bg: #1C1E25;
+  --border-color: #2D2F36;
+  --muted-text: #8A8D93;
+  --accent: #FFFFFF;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card-bg);
+  --color-border: var(--border-color);
+  --color-muted: var(--muted-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-anton);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #09090b; /* zinc-950 */
-    --foreground: #f4f4f5; /* zinc-100 */
+    --background: #17191F;
+    --foreground: #E8E8E8;
+    --card-bg: #1C1E25;
+    --border-color: #2D2F36;
+    --muted-text: #8A8D93;
+    --accent: #FFFFFF;
   }
 }
 
@@ -42,20 +54,24 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8; /* zinc-300 */
+  background: var(--border-color);
   border-radius: 9999px;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: #27272a; /* zinc-800 */
-}
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa; /* zinc-400 */
+  background: var(--muted-text);
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46; /* zinc-700 */
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* Mobile responsive utilities */
@@ -73,5 +89,14 @@ body {
   button, a {
     min-height: 44px;
     min-width: 44px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

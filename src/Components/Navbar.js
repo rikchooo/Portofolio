@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
@@ -17,76 +18,103 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Beranda", href: "#home" },
-    { name: "Tentang", href: "#about" },
-    { name: "Proyek", href: "#projects" },
-    { name: "Pengalaman", href: "#experience" },
-    { name: "Kontak", href: "#contact" },
+    { name: "Work", href: "#work" },
+    { name: "Capabilities", href: "#capabilities" },
+    { name: "About", href: "#about" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-200/50 dark:border-zinc-800/50 shadow-sm"
-          : "bg-transparent"
-        }`}
+        ? "bg-background/80 backdrop-blur-md border-b border-border/50"
+        : "bg-transparent"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 md:h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-1 group">
-          <span className="bg-linear-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent group-hover:opacity-80 transition-opacity">RH</span>
+        <a href="#home" className="flex items-center gap-1 group">
+          <Image
+            src="/LogoBranding.png"
+            alt="Riko Hermawan"
+            width={60}
+            height={60}
+            className="w-16 h-16 md:w-14 md:h-14 object-contain group-hover:opacity-80 transition-opacity"
+            priority
+          />
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+              className="text-xs font-medium text-muted hover:text-foreground transition-colors uppercase tracking-wider"
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        {/* Mobile Nav Button */}
-        <div className="flex items-center gap-2 md:hidden">
+        {/* CTA Button & Mobile Nav Button */}
+        <div className="flex items-center gap-4 md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 transition-colors cursor-pointer"
+            className="p-2 rounded-lg bg-card hover:bg-border text-muted hover:text-foreground transition-colors cursor-pointer"
             aria-label="Menu"
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
           >
             {isOpen ? (
-              // Cross icon
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              // Hamburger icon
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
         </div>
+
+        {/* Desktop CTA Button */}
+        <div className="hidden md:flex items-center">
+          <a
+            href="#contact"
+            className="px-5 py-2 rounded-full bg-foreground text-background font-medium text-xs uppercase tracking-wider hover:bg-muted hover:text-foreground transition-all flex items-center gap-2"
+          >
+            LET&apos;S TALK
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 5l7 7-7 7M5 12h14" />
+            </svg>
+          </a>
+        </div>
       </div>
 
       {/* Mobile Menu Panel */}
       {isOpen && (
-        <div id="mobile-menu" className="md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-4 py-4 flex flex-col gap-4">
+        <div id="mobile-menu" className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur-md px-4 py-6 flex flex-col gap-2">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-base font-medium text-zinc-700 dark:text-zinc-300 hover:text-violet-600 dark:hover:text-violet-400 py-1 transition-colors"
+              className="text-sm font-medium text-muted hover:text-foreground py-3 transition-colors uppercase tracking-wider"
             >
               {link.name}
             </a>
           ))}
+          <a
+            href="#contact"
+            onClick={() => setIsOpen(false)}
+            className="px-5 py-3 rounded-full bg-foreground text-background font-medium text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 mt-2"
+          >
+            LET&apos;S TALK
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 5l7 7-7 7M5 12h14" />
+            </svg>
+          </a>
         </div>
       )}
     </header>
